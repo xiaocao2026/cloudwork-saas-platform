@@ -1,0 +1,31 @@
+# IntelliJ IDEA
+.idea/
+**/.idea/
+*.iml
+
+# Java
+**/target/
+*.class
+
+# Node
+**/node_modules/
+**/dist/
+
+# Local environment
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Docker runtime data
+RuoYi-Cloud/docker/mysql/data/
+RuoYi-Cloud/docker/redis/data/
+RuoYi-Cloud/docker/nacos/logs/
+
+# OS
+.DS_Store
+Thumbs.db

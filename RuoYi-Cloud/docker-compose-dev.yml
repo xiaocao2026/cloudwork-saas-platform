@@ -1,0 +1,96 @@
+
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: cloudwork-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ry-cloud
+      TZ: Asia/Shanghai
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/conf:/etc/mysql/conf.d
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: cloudwork-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./docker/redis/data:/data
+    command:
+      redis-server --appendonly yes
+
+  nacos:
+    image: nacos/nacos-server:v3.0.2
+    container_name: cloudwork-nacos
+    restart: always
+
+    environment:
+      MODE: standalone
+
+      SPRING_DATASOURCE_PLATFORM: mysql
+
+      MYSQL_SERVICE_HOST: mysql
+      MYSQL_SERVICE_PORT: 3306
+      MYSQL_SERVICE_DB_NAME: ry-config
+      MYSQL_SERVICE_USER: root
+      MYSQL_SERVICE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+      MYSQL_SERVICE_DB_PARAM: "characterEncoding=utf8&connectTimeout=10000&socketTimeout=30000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai"
+
+      NACOS_AUTH_ENABLE: "false"
+      NACOS_AUTH_TOKEN: Q2xvdWRXb3JrLU5hY29zLUF1dGgtU2VjcmV0LUtleS0yMDI2LURldmVsb3BtZW50
+      NACOS_AUTH_IDENTITY_KEY: cloudwork
+      NACOS_AUTH_IDENTITY_VALUE: cloudwork
+
+      JVM_XMS: 256m
+      JVM_XMX: 512m
+      JVM_XMN: 128m
+
+    ports:
+      - "18080:8080"
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    depends_on:
+      - mysql
+
+    volumes:
+      - ./docker/nacos/logs:/home/nacos/logs
+  frontend:
+    image: node:22-alpine
+    container_name: cloudwork-frontend
+    working_dir: /app
+
+    ports:
+      - "80:80"
+
+    environment:
+      VITE_PROXY_TARGET: http://host.docker.internal:8080
+      CHOKIDAR_USEPOLLING: "true"
+
+    volumes:
+      - ../RuoYi-Cloud-Vue3:/app
+      - frontend_node_modules:/app/node_modules
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    command: >
+      sh -c "
+      corepack enable &&
+      yarn install --registry=https://registry.npmmirror.com &&
+      yarn dev --host 0.0.0.0
+      "
+volumes:
+  frontend_node_modules:
