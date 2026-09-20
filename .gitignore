@@ -22,9 +22,9 @@ logs/
 **/logs/
 
 # Docker runtime data
-RuoYi-Cloud/docker/mysql/data/
-RuoYi-Cloud/docker/redis/data/
-RuoYi-Cloud/docker/nacos/logs/
+backend/docker/mysql/data/
+backend/docker/redis/data/
+backend/docker/nacos/logs/
 
 # OS
 .DS_Store

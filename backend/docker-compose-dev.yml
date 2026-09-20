@@ -80,7 +80,7 @@ services:
       CHOKIDAR_USEPOLLING: "true"
 
     volumes:
-      - ../RuoYi-Cloud-Vue3:/app
+      - ../frontend:/app
       - frontend_node_modules:/app/node_modules
 
     extra_hosts:
