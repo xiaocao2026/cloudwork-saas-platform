@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: cloudwork-tenant-test
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+      config:
+        enabled: false
+  config:
+    import: []
