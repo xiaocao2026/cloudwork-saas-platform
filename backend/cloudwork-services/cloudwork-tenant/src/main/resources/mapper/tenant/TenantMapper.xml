@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudwork.tenant.mapper.TenantMapper">
+
+    <resultMap id="TenantSummaryResult" type="com.cloudwork.tenant.vo.TenantSummaryVo">
+        <id property="tenantId" column="tenant_id" />
+        <result property="tenantCode" column="tenant_code" />
+        <result property="tenantName" column="tenant_name" />
+        <result property="status" column="status" />
+        <result property="roleCode" column="role_code" />
+    </resultMap>
+
+    <insert id="insertTenant" parameterType="com.cloudwork.tenant.domain.Tenant"
+            useGeneratedKeys="true" keyProperty="tenantId">
+        insert into tenant (tenant_code, tenant_name, status, created_by_user_id)
+        values (#{tenantCode}, #{tenantName}, #{status}, #{createdByUserId})
+    </insert>
+
+    <select id="selectMine" resultMap="TenantSummaryResult">
+        select t.tenant_id, t.tenant_code, t.tenant_name, t.status, r.role_code
+        from tenant_member m
+        inner join tenant t on t.tenant_id = m.tenant_id
+        inner join tenant_role r on r.role_id = m.role_id and r.tenant_id = m.tenant_id
+        where m.user_id = #{userId}
+          and m.member_status = #{memberStatus}
+        order by t.tenant_id desc
+    </select>
+
+    <select id="selectAccessibleById" resultMap="TenantSummaryResult">
+        select t.tenant_id, t.tenant_code, t.tenant_name, t.status, r.role_code
+        from tenant t
+        inner join tenant_member m on m.tenant_id = t.tenant_id
+        inner join tenant_role r on r.role_id = m.role_id and r.tenant_id = t.tenant_id
+        where t.tenant_id = #{tenantId}
+          and m.user_id = #{userId}
+          and m.member_status = #{memberStatus}
+    </select>
+</mapper>
