@@ -12,8 +12,8 @@
           <div class="capability-icon" :class="capability.className"><component :is="capability.icon" /></div>
           <h2>{{ capability.title }}</h2>
           <p>{{ capability.description }}</p>
-          <el-button v-if="capability.available" type="primary" link @click="router.push('/cloudwork/workspaces')">
-            Open Workspaces <el-icon><ArrowRight /></el-icon>
+          <el-button v-if="capability.route" type="primary" link @click="router.push(capability.route)">
+            {{ capability.action }} <el-icon><ArrowRight /></el-icon>
           </el-button>
           <el-tag v-else type="info" effect="plain">Coming Next</el-tag>
         </el-card>
@@ -28,9 +28,9 @@ import { OfficeBuilding, Folder, List, ArrowRight } from '@element-plus/icons-vu
 
 const router = useRouter()
 const capabilities = [
-  { title: 'Workspace', description: 'Create and organize the collaboration spaces your teams need.', available: true, icon: OfficeBuilding, className: 'workspace' },
-  { title: 'Projects', description: 'Plan initiatives and keep delivery work visible to everyone.', available: false, icon: Folder, className: 'projects' },
-  { title: 'Tasks', description: 'Turn plans into clear, accountable work for every team.', available: false, icon: List, className: 'tasks' }
+  { title: 'Workspace', description: 'Create and organize the collaboration spaces your teams need.', route: '/cloudwork/workspaces', action: 'Open Workspaces', icon: OfficeBuilding, className: 'workspace' },
+  { title: 'Projects', description: 'Plan initiatives and keep delivery work visible to everyone.', route: '/cloudwork/projects', action: 'Open Projects', icon: Folder, className: 'projects' },
+  { title: 'Tasks', description: 'Turn plans into clear, accountable work for every team.', icon: List, className: 'tasks' }
 ]
 </script>
 

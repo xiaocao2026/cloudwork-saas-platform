@@ -83,6 +83,24 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/cloudwork/projects',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/cloudwork/project/index'),
+        name: 'CloudWorkProjects',
+        meta: { title: 'Projects', icon: 'folder' }
+      },
+      {
+        path: ':projectId/tasks',
+        component: () => import('@/views/cloudwork/task/index'),
+        name: 'CloudWorkTasks',
+        meta: { title: 'Tasks', icon: 'list', activeMenu: '/cloudwork/projects' }
+      }
+    ]
+  },
+  {
     path: '/lock',
     component: () => import('@/views/lock'),
     hidden: true,
