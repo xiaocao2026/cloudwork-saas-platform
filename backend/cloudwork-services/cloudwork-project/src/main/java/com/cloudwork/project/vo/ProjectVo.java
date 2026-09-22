@@ -1,0 +1,9 @@
+package com.cloudwork.project.vo;
+
+public class ProjectVo
+{
+    private Long projectId; private Long tenantId; private String projectCode; private String projectName; private String description; private Integer status; private Long createdByUserId;
+    public Long getProjectId(){return projectId;} public void setProjectId(Long v){projectId=v;} public Long getTenantId(){return tenantId;} public void setTenantId(Long v){tenantId=v;}
+    public String getProjectCode(){return projectCode;} public void setProjectCode(String v){projectCode=v;} public String getProjectName(){return projectName;} public void setProjectName(String v){projectName=v;}
+    public String getDescription(){return description;} public void setDescription(String v){description=v;} public Integer getStatus(){return status;} public void setStatus(Integer v){status=v;} public Long getCreatedByUserId(){return createdByUserId;} public void setCreatedByUserId(Long v){createdByUserId=v;}
+}

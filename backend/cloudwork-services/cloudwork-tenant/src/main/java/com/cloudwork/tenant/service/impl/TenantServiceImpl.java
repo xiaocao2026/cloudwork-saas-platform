@@ -15,6 +15,7 @@ import com.cloudwork.tenant.mapper.TenantMemberMapper;
 import com.cloudwork.tenant.mapper.TenantRoleMapper;
 import com.cloudwork.tenant.service.TenantService;
 import com.cloudwork.tenant.vo.TenantSummaryVo;
+import com.cloudwork.tenant.vo.TenantAccessVo;
 import com.ruoyi.common.core.constant.HttpStatus;
 import com.ruoyi.common.core.exception.ServiceException;
 import com.ruoyi.common.core.utils.uuid.IdUtils;
@@ -98,6 +99,24 @@ public class TenantServiceImpl implements TenantService
             throw new ServiceException("Workspace不存在或无权访问", HttpStatus.NOT_FOUND);
         }
         return summary;
+    }
+
+    @Override
+    public TenantAccessVo checkAccess(Long tenantId)
+    {
+        Long userId = currentUserId();
+        TenantAccessVo access = tenantMemberMapper.selectAccess(tenantId, userId,
+                TenantConstants.MEMBER_STATUS_ACTIVE);
+        if (access == null)
+        {
+            access = new TenantAccessVo();
+            access.setTenantId(tenantId);
+            access.setUserId(userId);
+            access.setAccessible(false);
+            return access;
+        }
+        access.setAccessible(true);
+        return access;
     }
 
     private TenantRole insertSystemRole(Long tenantId, String roleCode, String roleName, int sortOrder)

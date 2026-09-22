@@ -11,6 +11,7 @@
 
     <modules>
         <module>cloudwork-tenant</module>
+        <module>cloudwork-project</module>
     </modules>
 
     <artifactId>cloudwork-services</artifactId>

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cloudwork.tenant.dto.CreateTenantRequest;
 import com.cloudwork.tenant.service.TenantService;
+import com.cloudwork.tenant.vo.TenantAccessVo;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.security.annotation.RequiresLogin;
 
 /**

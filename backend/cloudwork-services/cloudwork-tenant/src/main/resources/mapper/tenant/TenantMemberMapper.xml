@@ -9,4 +9,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into tenant_member (tenant_id, user_id, role_id, member_status, joined_at)
         values (#{tenantId}, #{userId}, #{roleId}, #{memberStatus}, #{joinedAt})
     </insert>
+
+    <select id="selectAccess" resultType="com.cloudwork.tenant.vo.TenantAccessVo">
+        select
+            m.tenant_id as tenantId,
+            m.user_id as userId,
+            r.role_code as roleCode
+        from tenant_member m
+                 inner join tenant_role r on r.role_id = m.role_id and r.tenant_id = m.tenant_id
+        where m.tenant_id = #{tenantId}
+          and m.user_id = #{userId}
+          and m.member_status = #{memberStatus}
+          and r.status = 0
+    </select>
 </mapper>
