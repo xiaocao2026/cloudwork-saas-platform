@@ -29,3 +29,5 @@ backend/docker/nacos/logs/
 # OS
 .DS_Store
 Thumbs.db
+# Vite local cache
+frontend/.vite/
