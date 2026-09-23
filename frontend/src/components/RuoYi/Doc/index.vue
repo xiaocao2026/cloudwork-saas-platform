@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const url = ref('http://doc.ruoyi.vip/ruoyi-cloud')
+const url = ref('https://github.com/xiaocao2026/cloudwork-saas-platform')
 
 function goto() {
   window.open(url.value)

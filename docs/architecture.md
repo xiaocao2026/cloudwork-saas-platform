@@ -403,9 +403,9 @@ WHERE task_id = ?
 
 ---
 
-## 8. 为什么不用 RuoYi DataScope 做 Tenant 隔离
+## 8. 为什么不用通用 DataScope 做 Tenant 隔离
 
-RuoYi DataScope 主要用于：
+通用 DataScope 主要用于：
 
 - 部门范围
 - 组织范围

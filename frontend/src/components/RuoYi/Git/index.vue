@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-const url = ref('https://gitee.com/y_project/RuoYi-Cloud')
+const url = ref('https://github.com/xiaocao2026/cloudwork-saas-platform')
 
 function goto() {
   window.open(url.value)

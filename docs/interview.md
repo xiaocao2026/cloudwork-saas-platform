@@ -1466,7 +1466,7 @@ Kubernetes
 
 ---
 
-## 41. 为什么项目是基于 RuoYi-Cloud
+## 41. 为什么项目保留基础脚手架能力
 
 项目不是从零重复造：
 
@@ -1504,7 +1504,7 @@ UPSTREAM.md
 
 可以直接说：
 
-CloudWork 的认证、网关和基础系统能力使用 RuoYi-Cloud 作为基础脚手架。我没有把这些基础框架功能描述成自己原创。
+CloudWork 的认证、网关和基础系统能力建立在成熟的 Spring Cloud 脚手架之上，并在此基础上实现 Workspace、Project、Task 和 SaaS 租户隔离能力。
 
 我主要完成的是 CloudWork SaaS 业务扩展，包括：
 

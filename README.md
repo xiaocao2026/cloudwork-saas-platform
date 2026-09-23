@@ -566,7 +566,7 @@ CloudWork Project：
 backend/sql/cloudwork_project_v1.sql
 ```
 
-此外，还需要初始化 RuoYi 原有认证与配置数据库。
+此外，还需要初始化现有认证与配置数据库。
 
 ---
 
@@ -897,7 +897,7 @@ cloudwork-project
 
 ## 二十五、为什么没有直接使用 DataScope 做租户隔离
 
-RuoYi 原有 DataScope 主要面向：
+基础框架 DataScope 主要面向：
 
 ```text
 部门
@@ -997,9 +997,9 @@ cloudwork/
 
 ---
 
-## 二十八、上游项目说明
+## 二十八、基础脚手架说明
 
-CloudWork 使用 RuoYi-Cloud 与 RuoYi-Cloud-Vue3 作为基础微服务与前端脚手架。
+CloudWork 基于成熟的 Spring Cloud 微服务与 Vue 3 前端脚手架构建，并在此基础上形成自己的 SaaS 产品能力。
 
 上游仓库及对应版本信息记录在：
 
@@ -1007,7 +1007,9 @@ CloudWork 使用 RuoYi-Cloud 与 RuoYi-Cloud-Vue3 作为基础微服务与前端
 UPSTREAM.md
 ```
 
-项目保留原有 MIT License 与必要的版权声明。
+项目保留必要的 MIT License 与版权声明。
+
+项目仓库：[CloudWork SaaS Platform](https://github.com/xiaocao2026/cloudwork-saas-platform)
 
 CloudWork 在基础脚手架之上新增的主要内容包括：
 

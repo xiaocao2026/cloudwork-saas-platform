@@ -212,7 +212,7 @@ function handleGenTable(row) {
       proxy.$modal.msgSuccess("成功生成到自定义路径：" + row.genPath)
     })
   } else {
-    const zipName = Array.isArray(tbNames) ? "ruoyi.zip" : tbNames + ".zip"
+    const zipName = Array.isArray(tbNames) ? "cloudwork.zip" : tbNames + ".zip"
     proxy.$download.zip("/code/gen/batchGenCode?tables=" + tbNames, zipName)
   }
 }

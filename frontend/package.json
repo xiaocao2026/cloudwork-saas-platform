@@ -2,7 +2,7 @@
   "name": "cloudwork-web",
   "version": "3.6.8",
   "description": "CloudWork Enterprise SaaS Collaboration Platform",
-  "author": "若依",
+  "author": "CloudWork",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/y_project/RuoYi-Cloud.git"
+    "url": "https://github.com/xiaocao2026/cloudwork-saas-platform.git"
   },
   "dependencies": {
     "@element-plus/icons-vue": "2.3.2",
