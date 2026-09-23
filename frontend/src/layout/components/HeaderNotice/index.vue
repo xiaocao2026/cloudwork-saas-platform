@@ -3,7 +3,7 @@
     <el-popover ref="noticePopover" placement="bottom-end" :width="320" trigger="manual" v-model:visible="noticeVisible" popper-class="notice-popover">
       <!-- 弹出内容 -->
       <div class="notice-header">
-        <span class="notice-title">通知公告</span>
+        <span class="notice-title">CloudWork 消息中心</span>
         <span class="notice-mark-all" @click="markAllRead">全部已读</span>
       </div>
       <div v-if="noticeLoading" class="notice-loading">
@@ -11,7 +11,7 @@
       </div>
       <div v-else-if="noticeList.length === 0" class="notice-empty">
         <el-icon style="font-size:24px;display:block;margin-bottom:6px;"><Postcard /></el-icon>
-        暂无公告
+        暂无消息
       </div>
       <div v-else>
         <div v-for="item in noticeList" :key="item.noticeId" class="notice-item" :class="{ 'is-read': item.isRead }" @click="previewNotice(item)">

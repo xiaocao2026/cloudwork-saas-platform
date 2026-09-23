@@ -25,14 +25,14 @@
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
 
-        <el-tooltip content="消息通知" effect="dark" placement="bottom">
+        <el-tooltip content="CloudWork 消息中心" effect="dark" placement="bottom">
           <header-notice id="header-notice" class="right-menu-item hover-effect" />
         </el-tooltip>
       </template>
 
       <el-dropdown @command="handleCommand" class="avatar-container right-menu-item hover-effect" trigger="hover">
         <div class="avatar-wrapper">
-          <img :src="userStore.avatar" class="user-avatar" />
+          <img :src="userStore.avatar || defaultAvatar" class="user-avatar" @error="handleAvatarError" />
           <span class="user-nickname"> {{ userStore.nickName }} </span>
         </div>
         <template #dropdown>
@@ -66,6 +66,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import HeaderSearch from '@/components/HeaderSearch'
+import defaultAvatar from '@/assets/images/cloudwork-avatar.svg'
 import useAppStore from '@/store/modules/app'
 import useUserStore from '@/store/modules/user'
 import useLockStore from '@/store/modules/lock'
@@ -81,6 +82,11 @@ const settingsStore = useSettingsStore()
 
 function toggleSideBar() {
   appStore.toggleSideBar()
+}
+
+function handleAvatarError(event) {
+  event.target.onerror = null
+  event.target.src = defaultAvatar
 }
 
 function handleCommand(command) {

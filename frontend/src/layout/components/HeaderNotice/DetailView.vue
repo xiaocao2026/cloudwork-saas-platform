@@ -1,5 +1,5 @@
 <template>
-  <el-drawer v-model="visible" title="公告详情" direction="rtl" size="50%" append-to-body :before-close="handleClose" class="notice-detail-drawer">
+  <el-drawer v-model="visible" title="CloudWork 消息详情" direction="rtl" size="50%" append-to-body :before-close="handleClose" class="notice-detail-drawer">
     <div v-loading="loading" class="notice-detail-drawer__body">
       <div v-if="!detail" class="notice-empty">
         <el-icon><Document /></el-icon>
